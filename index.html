@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBORA | Crafting Next-Gen Digital Experiences</title>
+    <meta name="description"
+        content="Webora is a premier web development agency delivering custom web applications, high-converting e-commerce, sleek UI/UX design, and SEO solutions in Sri Lanka and globally.">
+
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#09090b',
+                        darkCard: '#12121a',
+                        purpleGlow: '#a855f7',
+                        purplePrimary: '#7c3aed',
+                        indigoGlow: '#6366f1',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        brand: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        glow: {
+                            '0%': { opacity: '0.4', filter: 'blur(20px)' },
+                            '100%': { opacity: '0.8', filter: 'blur(30px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #09090b;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(18, 18, 26, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel-hover:hover {
+            background: rgba(24, 24, 36, 0.85);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .glass-nav {
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Glowing Gradients */
+        .glow-purple {
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(9, 9, 11, 0) 70%);
+        }
+
+        .glow-indigo {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(9, 9, 11, 0) 70%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #c084fc 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+
+        /* Background Grid Pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* --- DARK THEME PACKAGE CARDS --- */
+        .package-card {
+            background: linear-gradient(145deg, rgba(18, 18, 26, 0.9), rgba(24, 24, 36, 0.7));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .package-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 15px 40px -10px rgba(124, 58, 237, 0.3);
+        }
+
+        .package-card:hover::before {
+            opacity: 1;
+        }
+
+        .package-card.featured {
+            background: linear-gradient(145deg, rgba(30, 30, 45, 0.95), rgba(20, 20, 30, 0.9));
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 0 40px -5px rgba(124, 58, 237, 0.3);
+            transform: scale(1.03);
+            z-index: 10;
+        }
+
+        .package-card.featured::before {
+            opacity: 1;
+            background: linear-gradient(90deg, transparent, #a855f7, #6366f1, transparent);
+            height: 4px;
+        }
+
+        .package-tier {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .package-subtitle {
+            font-size: 0.85rem;
+            color: #a855f7;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .package-desc {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            min-height: 48px;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            flex-grow: 1;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.5rem;
+        }
+
+        .package-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #d1d5db;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .package-features li i {
+            color: #a855f7;
+            font-size: 1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .package-domain {
+            font-size: 0.8rem;
+            color: #6b7280;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            border-left: 2px solid #7c3aed;
+            word-break: break-all;
+        }
+
+        .package-price {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+            line-height: 1.1;
+        }
+
+        .package-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #6b7280;
+        }
+
+        .package-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.85rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: #d8b4fe;
+            background: rgba(168, 85, 247, 0.05);
+            margin-top: auto;
+        }
+
+        .package-btn:hover {
+            background: #7c3aed;
+            color: white;
+            border-color: #7c3aed;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .package-card.featured .package-btn {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .package-card.featured .package-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+        }
+    </style>
+</head>
+
+<body class="bg-darkBg text-gray-200 antialiased selection:bg-purplePrimary selection:text-white relative">
+
+    <!-- Glowing Background Lights (Hidden on very small screens to prevent lag) -->
+    <div
+        class="hidden sm:block fixed top-0 left-1/4 w-[500px] h-[500px] glow-purple pointer-events-none z-0 rounded-full animate-pulse-slow">
+    </div>
+    <div
+        class="hidden sm:block fixed top-1/3 right-10 w-[600px] h-[600px] glow-indigo pointer-events-none z-0 rounded-full animate-pulse-slow">
+    </div>
+    <div
+        class="hidden sm:block fixed bottom-10 left-10 w-[400px] h-[400px] glow-purple pointer-events-none z-0 rounded-full opacity-60">
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center group">
+                <span
+                    class="font-brand text-2xl sm:text-3xl font-extrabold tracking-wider text-gradient group-hover:opacity-80 transition-opacity">WEBORA</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-3 text-sm font-semibold text-gray-300">
+                <a href="#home" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-white/5 transition">Home</a>
+                <a href="#services"
+                    class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-white/5 transition">Services</a>
+                <a href="#packages"
+                    class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-white/5 transition">Packages</a>
+                <a href="#portfolio"
+                    class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-white/5 transition">Portfolio</a>
+                <a href="#about" class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-white/5 transition">About</a>
+                <a href="#reviews"
+                    class="px-3.5 py-2 rounded-lg hover:text-white hover:bg-white/5 transition">Reviews</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden md:flex items-center gap-4">
+                <!-- WhatsApp Link -->
+                <a href="https://wa.me/94789491209?text=Hello%20Webora!%20I'd%20like%20to%20discuss%20a%20project."
+                    target="_blank" id="navWhatsAppLink"
+                    class="p-2.5 rounded-xl border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 transition flex items-center gap-2 text-sm font-medium"
+                    title="Direct WhatsApp Chat">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="#contact"
+                    class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-semibold rounded-xl group bg-gradient-to-br from-purplePrimary to-indigoGlow group-hover:from-purplePrimary group-hover:to-purpleGlow text-white shadow-lg shadow-purplePrimary/25 hover:shadow-purplePrimary/40 transition">
+                    <span
+                        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-darkBg rounded-[10px] group-hover:bg-opacity-0">
+                        Contact Us
+                    </span>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="mobileMenuBtn"
+                class="md:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu"
+            class="hidden md:hidden glass-panel border-t border-purple-500/20 px-4 pt-3 pb-6 space-y-2">
+            <a href="#home" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-purple-500/10">Home</a>
+            <a href="#services" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-purple-500/10">Services</a>
+            <a href="#packages" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-purple-500/10">Packages</a>
+            <a href="#portfolio" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-purple-500/10">Portfolio</a>
+            <a href="#about" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-purple-500/10">About</a>
+            <a href="#reviews" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-purple-500/10">Reviews</a>
+            <a href="#contact" class="block px-3 py-2 rounded-lg text-gray-200 hover:bg-purple-500/10">Contact</a>
+            <div class="pt-4 flex flex-col gap-3">
+                <a href="https://wa.me/94789491209?text=Hello%20Webora!%20I'd%20like%20to%20discuss%20a%20project."
+                    target="_blank" id="mobileWhatsAppLink"
+                    class="w-full text-center py-2.5 rounded-xl border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-medium">
+                    <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp Direct
+                </a>
+                <a href="#contact"
+                    class="w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-purplePrimary to-indigoGlow text-white font-semibold">
+                    Get Free Quote
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-20">
+
+        <!-- HERO SECTION -->
+        <section id="home"
+            class="relative min-h-[85vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-grid">
+            <div class="max-w-6xl mx-auto text-center space-y-6 sm:space-y-8">
+                <div
+                    class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full glass-panel border-purple-500/30 text-purple-300 text-[10px] sm:text-sm font-medium">
+                    <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Accepting New Client Projects</span>
+                    <i class="fa-solid fa-arrow-right text-[10px] sm:text-xs ml-1"></i>
+                </div>
+
+                <h1 id="heroTitle"
+                    class="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight sm:leading-none text-white px-2">
+                    Crafting <span class="text-gradient">Next-Gen</span> <br class="hidden sm:inline" />
+                    Digital Experiences
+                </h1>
+
+                <p id="heroSub"
+                    class="max-w-3xl mx-auto text-sm sm:text-lg lg:text-xl text-gray-400 font-normal leading-relaxed px-2">
+                    Webora is a premier web development agency delivering high-speed web apps, custom corporate sites,
+                    and modern e-commerce solutions built to scale your brand.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 px-4 sm:px-0">
+                    <a href="#portfolio"
+                        class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-gradient-to-r from-purplePrimary to-indigoGlow text-white font-bold text-sm sm:text-base shadow-xl shadow-purplePrimary/30 hover:shadow-purplePrimary/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                        <span>Explore Our Work</span>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <a href="#contact"
+                        class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl glass-panel hover:bg-white/10 text-white font-semibold text-sm sm:text-base border border-purple-500/30 hover:border-purple-400 transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-purpleGlow"></i>
+                        <span>Start a Project</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-purpleGlow">Our Services</h2>
+                <p class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-2">What We Can Build For You</p>
+                <p class="text-gray-400 mt-3 sm:mt-4 text-sm sm:text-base">Simple, straightforward solutions to help
+                    your business look great and work perfectly online.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" id="servicesContainer">
+                <!-- Services injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- WEBSITE PACKAGES SECTION -->
+        <section id="packages" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] glow-purple opacity-20 pointer-events-none -z-10 rounded-full">
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-purpleGlow">Pricing Plans</h2>
+                <p class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-2">Choose Your Digital Launchpad
+                </p>
+                <p class="text-gray-400 mt-3 sm:mt-4 text-sm sm:text-base max-w-2xl mx-auto">
+                    Which package fits your project best? From simple landing pages to full custom web apps, we have you
+                    covered.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" id="packagesContainer">
+                <!-- Packages injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- PORTFOLIO WITH LIVE DEMOS -->
+        <section id="portfolio" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-purpleGlow">Case Studies</h2>
+                <p class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-2">Featured Projects</p>
+                <p class="text-gray-400 mt-3 sm:mt-4 text-xs sm:text-sm">Explore interactive previews of websites and
+                    web applications engineered by WEBORA.</p>
+
+                <!-- Filter Tabs (Dynamically generated) -->
+                <div class="flex flex-wrap justify-center gap-2 mt-6 sm:mt-8" id="filterContainer"></div>
+            </div>
+
+            <!-- Portfolio Container (Dynamic) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="portfolioContainer">
+                <!-- Projects injected dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- ABOUT US & WORKFLOW PROCESS -->
+        <section id="about" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 items-center">
+                <!-- Story Content -->
+                <div class="space-y-4 sm:space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-purpleGlow">Who We Are</span>
+                    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">Engineering
+                        Digital
+                        Excellence for Ambitious Brands</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        At WEBORA, we combine creative design mastery with modern software engineering. We specialize in
+                        building fast, secure, and intuitive web systems that convert visitors into loyal clients.
+                    </p>
+
+                    <div class="space-y-3 sm:space-y-4 pt-2">
+                        <div
+                            class="flex items-start gap-3 sm:gap-4 glass-panel p-3 sm:p-4 rounded-xl border-purple-500/20">
+                            <div
+                                class="w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-lg bg-purple-500/20 flex items-center justify-center text-purpleGlow font-bold text-sm sm:text-base">
+                                01</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm sm:text-base">Speed & Code Precision</h4>
+                                <p class="text-xs text-gray-400 mt-1">Zero bloatware. Every line of code is optimized
+                                    for lightning speed and SEO performance.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-start gap-3 sm:gap-4 glass-panel p-3 sm:p-4 rounded-xl border-purple-500/20">
+                            <div
+                                class="w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-sm sm:text-base">
+                                02</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm sm:text-base">Direct Collaboration</h4>
+                                <p class="text-xs text-gray-400 mt-1">Direct technical communication via WhatsApp,
+                                    transparent progress, and on-time delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-Step Process Roadmap -->
+                <div class="glass-panel p-5 sm:p-8 rounded-3xl border-purple-500/30 space-y-5 sm:space-y-6">
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-diagram-project text-purpleGlow"></i>
+                        Our Development Process
+                    </h3>
+
+                    <div
+                        class="space-y-5 sm:space-y-6 relative border-l-2 border-purple-500/30 ml-3 sm:ml-4 pl-5 sm:pl-6">
+                        <!-- Step 1: Discovery -->
+                        <div class="relative group">
+                            <span
+                                class="absolute -left-[27px] sm:-left-[31px] top-1 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-purplePrimary border-4 border-darkBg"></span>
+                            <div class="text-[10px] sm:text-xs font-mono text-purpleGlow font-bold">1️⃣ Discovery</div>
+                            <div class="text-base sm:text-lg font-bold text-white mt-1">Share Your Goals</div>
+                            <p class="text-xs text-gray-400 mt-1">You share your site goals and preferences. We listen,
+                                analyze, and plan the perfect strategy for your brand.</p>
+                        </div>
+
+                        <!-- Step 2: Design Blueprint -->
+                        <div class="relative group">
+                            <span
+                                class="absolute -left-[27px] sm:-left-[31px] top-1 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-purplePrimary border-4 border-darkBg"></span>
+                            <div class="text-[10px] sm:text-xs font-mono text-purpleGlow font-bold">2️⃣ Design Blueprint
+                            </div>
+                            <div class="text-base sm:text-lg font-bold text-white mt-1">Visual UI Mockups</div>
+                            <p class="text-xs text-gray-400 mt-1">I send visual UI mockups for your approval. We refine
+                                the design until it perfectly matches your vision.</p>
+                        </div>
+
+                        <!-- Step 3: Development -->
+                        <div class="relative group">
+                            <span
+                                class="absolute -left-[27px] sm:-left-[31px] top-1 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-purplePrimary border-4 border-darkBg"></span>
+                            <div class="text-[10px] sm:text-xs font-mono text-purpleGlow font-bold">3️⃣ Development
+                            </div>
+                            <div class="text-base sm:text-lg font-bold text-white mt-1">Build & Test</div>
+                            <p class="text-xs text-gray-400 mt-1">I build and test your full custom PHP website. Every
+                                feature is rigorously checked for speed, security, and responsiveness.</p>
+                        </div>
+
+                        <!-- Step 4: Launch -->
+                        <div class="relative group">
+                            <span
+                                class="absolute -left-[27px] sm:-left-[31px] top-1 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-emerald-400 border-4 border-darkBg"></span>
+                            <div class="text-[10px] sm:text-xs font-mono text-emerald-400 font-bold">4️⃣ Launch</div>
+                            <div class="text-base sm:text-lg font-bold text-white mt-1">Go Live & Handover</div>
+                            <p class="text-xs text-gray-400 mt-1">We set up your domain, SSL, search engine indexing,
+                                and handover the live site! You're ready to grow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS & REVIEWS SECTION -->
+        <section id="reviews" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-purpleGlow">Client Feedback</h2>
+                <p class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-2">What Our Clients Say</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="testimonialsContainer">
+                <!-- Reviews injected dynamically via JS -->
+            </div>
+
+            <!-- Submit Review CTA -->
+            <div class="mt-10 sm:mt-12 text-center">
+                <button onclick="openReviewModal()"
+                    class="px-6 py-2.5 rounded-xl border border-purple-500/30 text-purple-300 hover:bg-purple-500/10 text-xs font-bold transition">
+                    <i class="fa-solid fa-pen-to-square mr-2"></i> Leave a Review
+                </button>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION & WHATSAPP INTEGRATION -->
+        <section id="contact" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-6 sm:space-y-8">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-purpleGlow">Let's Connect</span>
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-2">Start Your Project
+                            with WEBORA</h2>
+                        <p class="text-gray-400 text-sm mt-3 sm:mt-4">Have a new website in mind or need an existing
+                            platform upgraded? Message us directly or submit your project inquiry below.</p>
+                    </div>
+
+                    <!-- Direct WhatsApp Callout Card -->
+                    <div
+                        class="glass-panel p-4 sm:p-6 rounded-2xl border-emerald-500/30 bg-emerald-950/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3 sm:gap-4">
+                            <div
+                                class="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl sm:text-2xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm sm:text-base">Instant WhatsApp Chat</h4>
+                                <p class="text-xs text-gray-400" id="contactPhone">0789491209</p>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/94789491209?text=Hello%20Webora!%20I'm%20interested%20in%20a%20new%20website%20project."
+                            target="_blank" id="contactWhatsAppBtn"
+                            class="w-full sm:w-auto text-center px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs transition">
+                            Chat Now
+                        </a>
+                    </div>
+
+                    <div class="space-y-4 text-sm text-gray-300">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 shrink-0 rounded-xl glass-panel flex items-center justify-center text-purpleGlow">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <div class="text-xs text-gray-400">Direct Email</div>
+                                <div class="font-bold text-white truncate" id="contactEmail">weboradev@gmail.com</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 shrink-0 rounded-xl glass-panel flex items-center justify-center text-purpleGlow">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">Location</div>
+                                <div class="font-bold text-white">Colombo, Sri Lanka & Global Service</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inquiry Form -->
+                <div class="glass-panel p-6 sm:p-10 rounded-3xl border-purple-500/30">
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-6">Send Project Inquiry</h3>
+
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4 sm:space-y-5">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Your Name *</label>
+                            <input type="text" id="formName" required placeholder="John Doe"
+                                class="w-full px-4 py-3 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow transition">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Email Address *</label>
+                                <input type="email" id="formEmail" required placeholder="john@company.com"
+                                    class="w-full px-4 py-3 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Phone / WhatsApp</label>
+                                <input type="tel" id="formPhone" placeholder="+94 7X XXX XXXX"
+                                    class="w-full px-4 py-3 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Interested Package</label>
+                            <select id="formService"
+                                class="w-full px-4 py-3 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow transition appearance-none">
+                                <option value="Starter Package">Starter Package (LKR 9,500)</option>
+                                <option value="Small Business Package">Small Business Package (LKR 14,500)</option>
+                                <option value="Premium Package">Premium Package (LKR 30,000)</option>
+                                <option value="Custom Build">Custom Build (Command the Developer)</option>
+                                <option value="Other">Other / General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Project Message *</label>
+                            <textarea id="formMessage" required rows="4"
+                                placeholder="Briefly describe your project requirements..."
+                                class="w-full px-4 py-3 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow transition"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full py-4 rounded-xl bg-gradient-to-r from-purplePrimary to-indigoGlow text-white font-bold text-sm shadow-lg shadow-purplePrimary/30 hover:opacity-95 transition flex items-center justify-center gap-2">
+                            <span>Send Inquiry</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+        class="border-t border-white/10 bg-black/60 pt-12 sm:pt-16 pb-8 sm:pb-12 relative z-10 text-sm text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="space-y-4">
+                <!-- Footer Brand -->
+                <a href="#" class="inline-block">
+                    <span class="font-brand text-3xl font-extrabold tracking-wider text-gradient">WEBORA</span>
+                </a>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Crafting next-generation digital experiences, high-speed web apps, and modern digital platforms.
+                </p>
+                <div class="flex gap-3 text-base">
+                    <!-- TikTok Icon -->
+                    <a href="#" id="footerTikTokLink" target="_blank"
+                        class="w-10 h-10 sm:w-8 sm:h-8 rounded-xl sm:rounded-lg glass-panel flex items-center justify-center hover:text-purpleGlow transition"
+                        title="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <!-- WhatsApp Icon -->
+                    <a href="https://wa.me/94789491209" target="_blank" id="footerWhatsAppLink"
+                        class="w-10 h-10 sm:w-8 sm:h-8 rounded-xl sm:rounded-lg glass-panel flex items-center justify-center hover:text-emerald-400 transition"
+                        title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 sm:gap-4 lg:col-span-2">
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Quick Navigation</h4>
+                    <ul class="space-y-3 sm:space-y-2 text-xs">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#packages" class="hover:text-white transition">Packages</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition">Portfolio</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition">Reviews</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Services</h4>
+                    <ul class="space-y-3 sm:space-y-2 text-xs">
+                        <li><a href="#services" class="hover:text-white transition">Custom Websites</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Online Stores</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Web Apps & Portals</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Speed & SEO</a></li>
+                        <li><a href="#services" class="hover:text-white transition">UI/UX Design</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Maintenance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-envelope mt-0.5 text-purpleGlow shrink-0"></i>
+                        <span id="footerEmail" class="break-all">weboradev@gmail.com</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-phone mt-0.5 text-purpleGlow shrink-0"></i>
+                        <span id="footerPhone">0789491209</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 mt-8 sm:mt-10 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+            <div>&copy; 2026 WEBORA. All rights reserved.</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+                <a href="#" class="hover:text-gray-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SERVICE DETAILS MODAL -->
+    <div id="serviceModal"
+        class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-lg w-full border-purple-500/40 relative">
+            <button onclick="closeServiceModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="modalServiceTitle" class="text-xl sm:text-2xl font-bold text-white mb-3 pr-6"></h3>
+            <p id="modalServiceDesc" class="text-sm text-gray-300 leading-relaxed mb-6"></p>
+            <button onclick="closeServiceModal(); document.getElementById('contact').scrollIntoView();"
+                class="w-full py-3 rounded-xl bg-purplePrimary text-white font-bold text-sm hover:bg-purpleGlow transition">
+                Inquire About This Service
+            </button>
+        </div>
+    </div>
+
+    <!-- REVIEW SUBMISSION MODAL -->
+    <div id="reviewModal"
+        class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-md w-full border-purple-500/40 relative">
+            <button onclick="closeReviewModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 pr-6">Submit Client Review</h3>
+            <p class="text-xs text-gray-400 mb-5 sm:mb-6">Share your experience working with WEBORA.</p>
+
+            <form onsubmit="handleReviewSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Your Name</label>
+                    <input type="text" id="reviewName" required placeholder="e.g. Kamal Perera"
+                        class="w-full px-4 py-2.5 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Company / Role</label>
+                    <input type="text" id="reviewCompany" required placeholder="e.g. Founder, BrandTech"
+                        class="w-full px-4 py-2.5 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Feedback Comment</label>
+                    <textarea id="reviewComment" required rows="3" placeholder="How was your experience?"
+                        class="w-full px-4 py-2.5 rounded-xl bg-darkBg border border-white/10 text-white text-sm focus:outline-none focus:border-purpleGlow"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full py-3 rounded-xl bg-purplePrimary hover:bg-purpleGlow text-white font-bold text-sm transition">
+                    Submit Review
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast"
+        class="fixed bottom-6 right-4 sm:right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 glass-panel border-purple-500/50 px-5 sm:px-6 py-3 sm:py-4 rounded-2xl flex items-center gap-3 shadow-2xl max-w-[calc(100vw-2rem)]">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-xl shrink-0"></i>
+        <div>
+            <div id="toastTitle" class="font-bold text-white text-sm">Success</div>
+            <div id="toastMessage" class="text-xs text-gray-300">Action completed.</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DEFAULT FALLBACK DATA ---
+        const fallbackSettings = {
+            heroTitle: "Crafting Next-Gen Digital Experiences",
+            heroSub: "Webora is a premier web development agency delivering high-speed web apps, custom corporate sites, and modern e-commerce solutions built to scale your brand.",
+            email: "weboradev@gmail.com",
+            phone: "0789491209",
+            whatsapp: "https://wa.me/94789491209",
+            tiktok: "https://tiktok.com/@webora"
+        };
+
+        const fallbackServices = [
+            { id: "s1", title: "Custom Websites", desc: "Beautiful, tailor-made websites built from scratch to perfectly match your brand and goals.", features: ["Unique designs (no templates)", "Works perfectly on phones & tablets", "Easy to update yourself"], icon: "fa-solid fa-laptop-code", color: "text-purpleGlow" },
+            { id: "s2", title: "Online Stores", desc: "Simple and secure e-commerce setups so you can start selling your products online quickly.", features: ["Easy product management", "Secure local & international payments", "Simple checkout process"], icon: "fa-solid fa-store", color: "text-indigo-400" },
+            { id: "s3", title: "Web Apps & Portals", desc: "Custom tools, client portals, or booking systems built to automate your business.", features: ["Custom user logins & dashboards", "Booking & reservation systems", "Connect to your existing tools"], icon: "fa-solid fa-gears", color: "text-emerald-400" },
+            { id: "s4", title: "Speed & SEO", desc: "Make your site load instantly and rank higher on Google so more people find you.", features: ["Lightning-fast load times", "Google search optimization", "Fix broken links & errors"], icon: "fa-solid fa-bolt", color: "text-purpleGlow" },
+            { id: "s5", title: "UI/UX Design", desc: "Clean, modern layouts designed to make your business look professional and trustworthy.", features: ["Beautiful, modern visual design", "Easy-to-use navigation", "Layouts built to get more leads"], icon: "fa-solid fa-pen-nib", color: "text-indigo-400" },
+            { id: "s6", title: "Maintenance & Support", desc: "We keep your website secure, updated, and running smoothly so you don't have to worry.", features: ["Regular software updates", "Daily backups & security checks", "Quick fixes if anything breaks"], icon: "fa-solid fa-shield-halved", color: "text-emerald-400" }
+        ];
+
+        const fallbackPackages = [
+            { id: "p1", tier: "Starter Package", subtitle: "Personal & Landing Pages", desc: "Perfect for personal portfolios, landing pages, and small projects.", price: "LKR 9,500", tax: "* No hidden fees", domain: "yourname.github.io", features: ["Free GitHub Pages web hosting setup", "Mobile-Responsive Design", "Basic On-Page SEO"], featured: false },
+            { id: "p2", tier: "Small Business", subtitle: "E-Commerce Store", desc: "Perfect for small stores selling products/services online.", price: "LKR 14,500", tax: "* Custom domain included", domain: "yourstore.com", features: ["Product listing & management", "WhatsApp / Online order system", "SEO setup included"], featured: true },
+            { id: "p3", tier: "Premium Package", subtitle: "Custom Web App", desc: "Full custom AI-enhanced PHP web app with custom database features.", price: "LKR 30,000", tax: "* Full configuration included", domain: "yourcompany.com", features: ["AI-Enhanced PHP Web App", "Custom Database Architecture", "Custom domain & hosting integration"], featured: false },
+            { id: "p4", tier: "Custom Build", subtitle: "Command the Developer", desc: "Tell me exactly what you need. I'll build it from scratch, feature by feature, just the way you command.", price: "Let's Talk", tax: "* Priced based on your commands", domain: "You set the rules", features: ["Completely custom features", "Bespoke integrations", "Built to your exact specs"], featured: false }
+        ];
+
+        const fallbackProjects = [
+            { id: "default_1", title: "LuxeCeylon E-Commerce", tag: "ecommerce", desc: "Luxury jewelry storefront with real-time checkout, stock synchronization, and filter engine.", tech: "Next.js, PayHere, Tailwind", icon: "fa-solid fa-gem", code: `<h1>Demo 1</h1>` },
+            { id: "default_2", title: "Apex Corporate Portal", tag: "corporate", desc: "Multi-national corporate portal with investor relations modules, career board, and news hub.", tech: "React, Framer Motion, Strapi CMS", icon: "fa-solid fa-building", code: `<h1>Demo 2</h1>` },
+            { id: "default_3", title: "PulseAnalytics Web App", tag: "saas", desc: "SaaS metrics analytics web application with real-time user activity dashboards and automated PDF reports.", tech: "Node.js, PostgreSQL, Recharts", icon: "fa-solid fa-chart-line", code: `<h1>Demo 3</h1>` }
+        ];
+
+        const fallbackReviews = [
+            { name: "Dinesh Perera", company: "Founder, LuxeCeylon", comment: "WEBORA transformed our e-commerce site. Our page load speed dropped under 1 second, and online sales increased significantly within weeks!", initial: "DS", color: "bg-purplePrimary" },
+            { name: "Sarah Jayawardena", company: "CMO, Apex Holdings", comment: "The design aesthetic and dark purple glowing theme they executed for our portal were stunning. Fast response times on WhatsApp throughout.", initial: "SJ", color: "bg-indigo-600" },
+            { name: "Roshan Nizar", company: "CTO, PulseAnalytics", comment: "Delivered our web application ahead of schedule with spotless code architecture. Highly recommended team for complex projects.", initial: "RN", color: "bg-emerald-600" }
+        ];
+
+        // --- MOBILE NAVIGATION ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
+        });
+
+        // --- PORTFOLIO FILTER ---
+        function filterPortfolio(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-purplePrimary', 'text-white');
+                btn.classList.add('text-gray-400');
+            });
+            event.currentTarget.classList.add('bg-purplePrimary', 'text-white');
+
+            const items = document.querySelectorAll('.portfolio-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // --- DYNAMIC DATA RENDERING ---
+        window.addEventListener('DOMContentLoaded', () => {
+            // 1. Load Settings
+            const savedSettings = JSON.parse(localStorage.getItem('webora_settings')) || fallbackSettings;
+
+            const heroTitleEl = document.getElementById('heroTitle');
+            heroTitleEl.innerHTML = savedSettings.heroTitle.replace("Next-Gen", '<span class="text-gradient">Next-Gen</span>');
+            document.getElementById('heroSub').textContent = savedSettings.heroSub;
+
+            document.getElementById('contactEmail').textContent = savedSettings.email;
+            document.getElementById('contactPhone').textContent = savedSettings.phone;
+            document.getElementById('footerEmail').textContent = savedSettings.email;
+            document.getElementById('footerPhone').textContent = savedSettings.phone;
+
+            const waLink = savedSettings.whatsapp + "?text=Hello%20Webora!%20I'd%20like%20to%20discuss%20a%20project.";
+            document.getElementById('navWhatsAppLink').href = waLink;
+            document.getElementById('mobileWhatsAppLink').href = waLink;
+            document.getElementById('contactWhatsAppBtn').href = savedSettings.whatsapp + "?text=Hello%20Webora!%20I'm%20interested%20in%20a%20new%20website%20project.";
+            document.getElementById('footerWhatsAppLink').href = savedSettings.whatsapp;
+
+            // Set TikTok Link (Fallback to # if empty)
+            const tiktokLink = document.getElementById('footerTikTokLink');
+            if (savedSettings.tiktok) {
+                tiktokLink.href = savedSettings.tiktok;
+            } else {
+                tiktokLink.style.display = 'none'; // Hide if no link set
+            }
+
+            // 2. Load Services
+            const savedServices = JSON.parse(localStorage.getItem('webora_services')) || fallbackServices;
+            const servicesContainer = document.getElementById('servicesContainer');
+            servicesContainer.innerHTML = savedServices.map(srv => `
+                <div class="glass-panel glass-panel-hover p-6 sm:p-8 rounded-2xl flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center ${srv.color} text-xl sm:text-2xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                            <i class="${srv.icon}"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-2xl font-bold text-white mb-2 sm:mb-3">${srv.title}</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">${srv.desc}</p>
+                        <ul class="space-y-2 text-xs text-gray-300">
+                            ${srv.features.map(f => `<li class="flex items-start gap-2"><i class="fa-solid fa-check ${srv.color} mt-0.5"></i> <span>${f}</span></li>`).join('')}
+                        </ul>
+                    </div>
+                    <button onclick="openServiceModal('${srv.title}', '${srv.desc}')" class="mt-6 sm:mt-8 text-xs sm:text-sm font-semibold ${srv.color} group-hover:text-white flex items-center gap-2">
+                        <span>Learn More</span> <i class="fa-solid fa-arrow-right text-[10px] sm:text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            // 3. Load Packages
+            const savedPackages = JSON.parse(localStorage.getItem('webora_packages')) || fallbackPackages;
+            const packagesContainer = document.getElementById('packagesContainer');
+            packagesContainer.innerHTML = savedPackages.map(pkg => `
+                <div class="package-card ${pkg.featured ? 'featured' : ''} ${pkg.tier === 'Custom Build' ? 'border-indigo-500/40 bg-gradient-to-b from-darkBg to-indigo-950/20' : ''}">
+                    <div class="flex-grow flex flex-col">
+                        <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+                            <h3 class="package-tier ${pkg.tier === 'Custom Build' ? 'text-indigo-300' : ''}">${pkg.tier}</h3>
+                            ${pkg.featured ? `<span class="bg-purplePrimary/20 text-purpleGlow border border-purplePrimary/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">Most Popular</span>` : ''}
+                        </div>
+                        <p class="package-subtitle ${pkg.tier === 'Custom Build' ? 'text-indigo-400' : ''}">${pkg.subtitle}</p>
+                        <p class="package-desc">${pkg.desc}</p>
+                        
+                        <ul class="package-features">
+                            ${pkg.features.map(f => `<li><i class="fa-solid fa-circle-check ${pkg.tier === 'Custom Build' ? 'text-indigo-400' : ''} shrink-0"></i> <span>${f}</span></li>`).join('')}
+                        </ul>
+
+                        <div class="package-domain ${pkg.tier === 'Custom Build' ? 'border-indigo-500/50' : ''}">
+                            <i class="fa-solid fa-link mr-1 ${pkg.tier === 'Custom Build' ? 'text-indigo-400' : 'text-purpleGlow'}"></i> Domain: ${pkg.domain}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="package-price ${pkg.tier === 'Custom Build' ? 'text-indigo-300' : ''}">${pkg.price} <span>${pkg.price.includes('LKR') ? '/one-time' : '/custom'}</span></div>
+                        <p class="package-tax">${pkg.tax}</p>
+                        <a href="#contact" class="package-btn ${pkg.tier === 'Custom Build' ? 'border-indigo-500/50 hover:bg-indigo-600 hover:border-indigo-500 text-indigo-300' : ''}">
+                            ${pkg.featured ? 'Launch Store' : pkg.tier === 'Custom Build' ? 'Send Commands' : 'Get Started'}
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            // 4. Load Portfolio (Fully Dynamic & Dynamic Filters)
+            loadPortfolio();
+
+            // 5. Load Reviews
+            loadReviews();
+        });
+
+        // --- MODALS MANAGEMENT ---
+        function openServiceModal(title, desc) {
+            document.getElementById('modalServiceTitle').textContent = title;
+            document.getElementById('modalServiceDesc').textContent = desc;
+            document.getElementById('serviceModal').classList.remove('hidden');
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').classList.add('hidden');
+        }
+
+        function openReviewModal() {
+            document.getElementById('reviewModal').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').classList.add('hidden');
+        }
+
+        // --- FORM SUBMISSIONS (Saves to Local Storage) ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('formName').value;
+            const email = document.getElementById('formEmail').value;
+            const phone = document.getElementById('formPhone').value;
+            const service = document.getElementById('formService').value;
+            const message = document.getElementById('formMessage').value;
+
+            const newInquiry = {
+                name: name,
+                email: email,
+                phone: phone,
+                service: service,
+                message: message,
+                date: new Date().toLocaleDateString()
+            };
+
+            const inquiries = JSON.parse(localStorage.getItem('webora_inquiries') || '[]');
+            inquiries.unshift(newInquiry);
+            localStorage.setItem('webora_inquiries', JSON.stringify(inquiries));
+
+            showToast("Inquiry Received!", `Thank you ${name}. The WEBORA team will contact you shortly.`);
+            document.getElementById('contactForm').reset();
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewName').value;
+            const company = document.getElementById('reviewCompany').value;
+            const comment = document.getElementById('reviewComment').value;
+
+            const newReview = {
+                name: name,
+                company: company,
+                comment: comment,
+                initial: name.charAt(0).toUpperCase(),
+                color: "bg-purplePrimary"
+            };
+
+            // Save to storage
+            let reviews = JSON.parse(localStorage.getItem('webora_reviews')) || fallbackReviews;
+            reviews.unshift(newReview);
+            localStorage.setItem('webora_reviews', JSON.stringify(reviews));
+
+            // Reload UI
+            loadReviews();
+            closeReviewModal();
+            showToast("Review Posted", "Thank you for your feedback!");
+        }
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        }
+
+        // --- FULLY DYNAMIC PORTFOLIO LOGIC ---
+        function loadPortfolio() {
+            const container = document.getElementById('portfolioContainer');
+            let projects = JSON.parse(localStorage.getItem('webora_custom_projects'));
+
+            if (projects === null || projects.length === 0) {
+                projects = fallbackProjects;
+                localStorage.setItem('webora_custom_projects', JSON.stringify(projects));
+            }
+
+            // --- Build Dynamic Filter Buttons ---
+            const filterContainer = document.getElementById('filterContainer');
+            const uniqueTags = ['all', ...new Set(projects.map(p => p.tag.toLowerCase()))];
+
+            const formatTag = (tag) => {
+                if (tag === 'all') return 'All Works';
+                if (tag === 'saas') return 'SaaS Web Apps';
+                if (tag === 'ecommerce') return 'E-Commerce';
+                return tag.charAt(0).toUpperCase() + tag.slice(1);
+            };
+
+            filterContainer.innerHTML = uniqueTags.map(tag => `
+                <button onclick="filterPortfolio('${tag}')" 
+                    class="filter-btn ${tag === 'all' ? 'bg-purplePrimary text-white' : 'text-gray-400'} px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold glass-panel hover:text-white transition">
+                    ${formatTag(tag)}
+                </button>
+            `).join('');
+
+            // --- Render Projects ---
+            window.projectCodes = {};
+            projects.forEach(p => window.projectCodes[p.id] = p.code);
+
+            container.innerHTML = projects.map(proj => {
+                let colorClass = "from-purple-900/40 to-indigo-900/40";
+                let iconColor = "text-purpleGlow";
+                if (proj.tag === 'corporate') { colorClass = "from-blue-900/40 to-indigo-900/40"; iconColor = "text-indigo-400"; }
+                if (proj.tag === 'saas') { colorClass = "from-purple-900/40 to-emerald-900/40"; iconColor = "text-emerald-400"; }
+
+                const techTags = proj.tech.split(',').map(t => `<span class="text-[9px] sm:text-[10px] px-2 py-1 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">${t.trim()}</span>`).join('');
+
+                return `
+                    <div class="portfolio-item ${proj.tag} glass-panel glass-panel-hover rounded-2xl overflow-hidden group flex flex-col">
+                        <div class="relative h-40 sm:h-48 bg-gradient-to-br ${colorClass} flex items-center justify-center p-6 border-b border-white/10 shrink-0">
+                            <div class="text-center">
+                                <i class="${proj.icon} text-4xl sm:text-5xl ${iconColor} mb-2 group-hover:scale-110 transition-transform"></i>
+                                <div class="text-[10px] sm:text-xs font-mono ${iconColor}">${proj.title}</div>
+                            </div>
+                        </div>
+                        <div class="p-5 sm:p-6 flex flex-col flex-grow">
+                            <div class="flex gap-1.5 sm:gap-2 mb-3 flex-wrap">
+                                ${techTags}
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-white mb-2">${proj.title}</h3>
+                            <p class="text-xs text-gray-400 mb-5 sm:mb-6 flex-grow">${proj.desc}</p>
+                            <button onclick="launchLiveDemo('${proj.id}')" 
+                                class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-purplePrimary text-white text-xs font-bold transition flex items-center justify-center gap-2 mt-auto">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full Live Demo
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- LOAD DYNAMIC REVIEWS ---
+        function loadReviews() {
+            const container = document.getElementById('testimonialsContainer');
+            let reviews = JSON.parse(localStorage.getItem('webora_reviews'));
+
+            if (!reviews) {
+                reviews = fallbackReviews;
+                localStorage.setItem('webora_reviews', JSON.stringify(reviews));
+            }
+
+            container.innerHTML = reviews.map(rev => `
+                <div class="glass-panel p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 text-xs mb-3 sm:mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-300 italic mb-5 sm:mb-6 line-clamp-4">"${rev.comment}"</p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-white/10 pt-4 mt-auto">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full ${rev.color || 'bg-purplePrimary'} flex items-center justify-center font-bold text-white text-xs sm:text-sm">${rev.initial || rev.name.charAt(0)}</div>
+                        <div class="overflow-hidden">
+                            <div class="text-xs sm:text-sm font-bold text-white truncate">${rev.name}</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 truncate">${rev.company}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Launch the custom code in a brand new tab with a back button
+        function launchLiveDemo(id) {
+            const code = window.projectCodes[id];
+            if (code) {
+                const newTab = window.open();
+                newTab.document.open();
+                newTab.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Live Demo | Webora</title>
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <style>
+                            body { margin: 0; padding: 0; font-family: sans-serif; }
+                            .demo-bar {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 56px;
+                                background: #09090b;
+                                color: white;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding: 0 15px;
+                                box-sizing: border-box;
+                                z-index: 999999;
+                                border-bottom: 1px solid #27272a;
+                            }
+                            .demo-bar a {
+                                color: #a855f7;
+                                text-decoration: none;
+                                font-weight: bold;
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                                font-size: 13px;
+                                padding: 8px 12px;
+                                border-radius: 8px;
+                                background: rgba(168, 85, 247, 0.1);
+                                transition: 0.2s;
+                            }
+                            .demo-bar a:hover {
+                                background: rgba(168, 85, 247, 0.2);
+                            }
+                            .demo-bar .brand {
+                                font-weight: 900;
+                                letter-spacing: 2px;
+                                font-size: 14px;
+                                background: linear-gradient(135deg, #ffffff, #d8b4fe);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                            }
+                            .demo-frame {
+                                width: 100%;
+                                height: 100vh;
+                                border: none;
+                                padding-top: 56px;
+                                box-sizing: border-box;
+                                background: white;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="demo-bar">
+                            <a href="javascript:window.close()"><span>&larr;</span> Back</a>
+                            <span class="brand">WEBORA DEMO</span>
+                        </div>
+                        <iframe class="demo-frame" srcdoc="${code.replace(/"/g, '&quot;')}"></iframe>
+                    </body>
+                    </html>
+                `);
+                newTab.document.close();
+            } else {
+                alert("Demo code not found.");
+            }
+        }
+    </script>
+</body>
+
+</html>
