@@ -60,20 +60,17 @@
             overscroll-behavior-y: none;
         }
 
-        /* ---------- GLOBAL COMPACT SECTIONS ON MOBILE ---------- */
         @media (max-width: 639px) {
             section {
                 scroll-margin-top: 70px;
             }
 
-            /* Tighter vertical rhythm on phones */
             .section-compact {
                 padding-top: 3rem !important;
                 padding-bottom: 3rem !important;
             }
         }
 
-        /* ---------- GLASS PANELS ---------- */
         .glass-panel {
             background: rgba(18, 18, 26, 0.65);
             backdrop-filter: blur(16px);
@@ -145,7 +142,6 @@
             }
         }
 
-        /* ---------- PACKAGE CARDS ---------- */
         .package-card {
             background: linear-gradient(145deg, rgba(18, 18, 26, 0.9), rgba(24, 24, 36, 0.7));
             border: 1px solid rgba(168, 85, 247, 0.2);
@@ -397,7 +393,6 @@
             box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
         }
 
-        /* ---------- MOBILE PACKAGE CAROUSEL ---------- */
         @media (max-width: 639px) {
             .packages-carousel-wrapper {
                 overflow-x: auto;
@@ -514,7 +509,6 @@
             }
         }
 
-        /* ---------- MOBILE SERVICE CARDS (2-COLUMN GRID ON PHONE) ---------- */
         @media (max-width: 639px) {
             .services-mobile-grid {
                 display: grid;
@@ -572,7 +566,6 @@
             }
         }
 
-        /* ---------- PORTFOLIO (2-COLUMN MOBILE GRID) ---------- */
         @media (max-width: 639px) {
             .portfolio-mobile-grid {
                 display: grid;
@@ -636,7 +629,6 @@
             }
         }
 
-        /* ---------- REVIEWS (SINGLE COLUMN BUT COMPACTER) ---------- */
         @media (max-width: 639px) {
             .reviews-mobile-grid {
                 gap: 0.65rem !important;
@@ -679,7 +671,6 @@
             }
         }
 
-        /* ---------- TOUCH TARGETS ---------- */
         @media (max-width: 639px) {
             .touch-target {
                 min-height: 44px;
@@ -692,11 +683,8 @@
             button {
                 font-size: 16px !important;
             }
-
-            /* prevents iOS zoom */
         }
 
-        /* Skeleton loader */
         .skeleton-pulse {
             animation: skpulse 1.5s ease-in-out infinite;
         }
@@ -713,7 +701,6 @@
             }
         }
 
-        /* Safe area for iPhone notch */
         @supports (padding: max(0px)) {
             body {
                 padding-left: env(safe-area-inset-left);
@@ -723,6 +710,18 @@
             footer {
                 padding-bottom: max(2rem, env(safe-area-inset-bottom));
             }
+        }
+
+        .social-tiktok:hover {
+            color: #ff0050 !important;
+        }
+
+        .social-instagram:hover {
+            color: #e1306c !important;
+        }
+
+        .social-whatsapp:hover {
+            color: #25d366 !important;
         }
     </style>
 </head>
@@ -1133,15 +1132,25 @@
                         class="font-brand text-2xl sm:text-3xl font-extrabold tracking-wider text-gradient">WEBORA</span></a>
                 <p class="text-[11px] sm:text-xs text-gray-400 leading-relaxed">Crafting next-generation digital
                     experiences, high-speed web apps, and modern digital platforms.</p>
+
+                <!-- SOCIAL ICONS: TikTok · Instagram · WhatsApp -->
                 <div class="flex gap-2 text-sm">
-                    <a href="https://www.tiktok.com/@webora.lk" id="footerTikTokLink" target="_blank"
-                        class="w-8 h-8 rounded-lg glass-panel flex items-center justify-center hover:text-purpleGlow transition touch-target"
-                        title="TikTok">
+                    <a href="https://www.tiktok.com/@theoudandco.lk?_r=1&_t=ZS-9BHdhExVnnd" id="footerTikTokLink"
+                        target="_blank" rel="noopener noreferrer"
+                        class="social-tiktok w-8 h-8 rounded-lg glass-panel flex items-center justify-center text-gray-300 hover:text-[#ff0050] transition touch-target"
+                        title="TikTok" aria-label="TikTok">
                         <i class="fa-brands fa-tiktok text-sm"></i>
                     </a>
-                    <a href="https://wa.me/94789491209" target="_blank" id="footerWhatsAppLink"
-                        class="w-8 h-8 rounded-lg glass-panel flex items-center justify-center hover:text-emerald-400 transition touch-target"
-                        title="WhatsApp">
+                    <a href="https://www.instagram.com/the.oud.and.co?srtk=MTRjbnE2eGd2ZGsyYg=="
+                        id="footerInstagramLink" target="_blank" rel="noopener noreferrer"
+                        class="social-instagram w-8 h-8 rounded-lg glass-panel flex items-center justify-center text-gray-300 hover:text-[#e1306c] transition touch-target"
+                        title="Instagram" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </a>
+                    <a href="https://wa.me/94789491209" target="_blank" rel="noopener noreferrer"
+                        id="footerWhatsAppLink"
+                        class="social-whatsapp w-8 h-8 rounded-lg glass-panel flex items-center justify-center text-gray-300 hover:text-emerald-400 transition touch-target"
+                        title="WhatsApp" aria-label="WhatsApp">
                         <i class="fa-brands fa-whatsapp text-sm"></i>
                     </a>
                 </div>
@@ -1282,12 +1291,15 @@
 
     <!-- SITE LOGIC -->
     <script>
+        // ---------- FALLBACK DEFAULTS ----------
         const fallbackSettings = {
             heroTitle: "Crafting Next-Gen Digital Experiences",
             heroSub: "Webora is a premier web development agency delivering high-speed web apps, custom corporate sites, and modern e-commerce solutions built to scale your brand.",
-            email: "weboradev@gmail.com", phone: "0789491209",
+            email: "weboradev@gmail.com",
+            phone: "0789491209",
             whatsapp: "https://wa.me/94789491209",
-            tiktok: "https://www.tiktok.com/@webora.lk"
+            tiktok: "https://www.tiktok.com/@theoudandco.lk?_r=1&_t=ZS-9BHdhExVnnd",
+            instagram: "https://www.instagram.com/the.oud.and.co?srtk=MTRjbnE2eGd2ZGsyYg=="
         };
         const fallbackServices = [
             { id: "s1", title: "Custom Websites", desc: "Beautiful, tailor-made websites built from scratch to match your brand.", features: ["Unique designs (no templates)", "Works on all devices", "Easy to update yourself"], icon: "fa-solid fa-laptop-code", color: "text-purpleGlow" },
@@ -1314,7 +1326,7 @@
             { name: "Roshan Nizar", company: "CTO, PulseAnalytics", comment: "Delivered our web application ahead of schedule with spotless code architecture.", initial: "RN", color: "bg-emerald-600" }
         ];
 
-        // MOBILE MENU
+        // ---------- MOBILE MENU ----------
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -1322,7 +1334,7 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // PORTFOLIO FILTER
+        // ---------- PORTFOLIO FILTER ----------
         function filterPortfolio(category) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
@@ -1343,7 +1355,7 @@
             });
         }
 
-        // CAROUSEL DOTS
+        // ---------- CAROUSEL DOTS ----------
         let carouselDotsInitialized = false;
         function setupCarouselDots() {
             const dotsContainer = document.getElementById('carouselDots');
@@ -1388,7 +1400,7 @@
             }
         }
 
-        // MODALS
+        // ---------- MODALS ----------
         function openServiceModal(title, desc) {
             document.getElementById('modalServiceTitle').textContent = title;
             document.getElementById('modalServiceDesc').textContent = desc;
@@ -1398,7 +1410,7 @@
         function openReviewModal() { document.getElementById('reviewModal').classList.remove('hidden'); }
         function closeReviewModal() { document.getElementById('reviewModal').classList.add('hidden'); }
 
-        // TOAST
+        // ---------- TOAST ----------
         function showToast(title, message) {
             const toast = document.getElementById('toast');
             document.getElementById('toastTitle').textContent = title;
@@ -1407,7 +1419,7 @@
             setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 4000);
         }
 
-        // INQUIRY SUBMIT
+        // ---------- INQUIRY SUBMIT ----------
         function handleFormSubmit(e) {
             e.preventDefault();
             const newInquiry = {
@@ -1430,7 +1442,7 @@
             e.target.reset();
         }
 
-        // REVIEW SUBMIT
+        // ---------- REVIEW SUBMIT ----------
         function handleReviewSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('reviewName').value;
@@ -1454,7 +1466,7 @@
             showToast("Review Posted", "Thank you for your feedback!");
         }
 
-        // LIVE DEMO
+        // ---------- LIVE DEMO ----------
         function launchLiveDemo(id) {
             const code = window.projectCodes[id];
             if (!code) { alert("Demo code not found."); return; }
@@ -1478,7 +1490,7 @@
             newTab.document.close();
         }
 
-        // RENDERERS
+        // ---------- RENDERERS ----------
         function renderSettings(s) {
             s = s || fallbackSettings;
             const heroTitleEl = document.getElementById('heroTitle');
@@ -1488,12 +1500,19 @@
             document.getElementById('contactPhone').textContent = s.phone || fallbackSettings.phone;
             document.getElementById('footerEmail').textContent = s.email || fallbackSettings.email;
             document.getElementById('footerPhone').textContent = s.phone || fallbackSettings.phone;
+
             const wa = s.whatsapp || fallbackSettings.whatsapp;
             document.getElementById('navWhatsAppLink').href = wa + "?text=Hello%20Webora!";
             document.getElementById('mobileWhatsAppLink').href = wa + "?text=Hello%20Webora!";
             document.getElementById('contactWhatsAppBtn').href = wa + "?text=Hello%20Webora!%20I'm%20interested%20in%20a%20new%20website.";
             document.getElementById('footerWhatsAppLink').href = wa;
-            if (s.tiktok) document.getElementById('footerTikTokLink').href = s.tiktok;
+
+            // Social links — always use fallback if not overridden in Firebase
+            const tiktokEl = document.getElementById('footerTikTokLink');
+            if (tiktokEl) tiktokEl.href = s.tiktok || fallbackSettings.tiktok;
+
+            const instaEl = document.getElementById('footerInstagramLink');
+            if (instaEl) instaEl.href = s.instagram || fallbackSettings.instagram;
         }
 
         function renderServices(services) {
@@ -1634,7 +1653,7 @@
             `).join('');
         }
 
-        // SUBSCRIBE TO FIREBASE
+        // ---------- FIREBASE SUBSCRIBE ----------
         function initFirebaseListeners() {
             const db = window.firebaseDB, ref = window.firebaseRef, onValue = window.firebaseOnValue, set = window.firebaseSet;
 
