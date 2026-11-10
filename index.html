@@ -723,6 +723,11 @@
         .social-whatsapp:hover {
             color: #25d366 !important;
         }
+
+        /* Hide Instagram by default; JS reveals it only if a link exists */
+        #footerInstagramLink {
+            display: none;
+        }
     </style>
 </head>
 
@@ -1141,8 +1146,8 @@
                         title="TikTok" aria-label="TikTok">
                         <i class="fa-brands fa-tiktok text-sm"></i>
                     </a>
-                    <a href="https://www.instagram.com/the.oud.and.co?srtk=MTRjbnE2eGd2ZGsyYg=="
-                        id="footerInstagramLink" target="_blank" rel="noopener noreferrer"
+                    <!-- Instagram is HIDDEN by default. JS reveals it only if a link exists. -->
+                    <a href="#" id="footerInstagramLink" target="_blank" rel="noopener noreferrer"
                         class="social-instagram w-8 h-8 rounded-lg glass-panel flex items-center justify-center text-gray-300 hover:text-[#e1306c] transition touch-target"
                         title="Instagram" aria-label="Instagram">
                         <i class="fa-brands fa-instagram text-sm"></i>
@@ -1172,7 +1177,6 @@
                     <li><a href="#about" class="hover:text-white transition">About</a></li>
                     <li><a href="#reviews" class="hover:text-white transition">Reviews</a></li>
                     <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
-                    <li><a href="admin.html" class="hover:text-white transition text-purpleGlow">Admin</a></li>
                 </ul>
             </div>
 
@@ -1299,7 +1303,7 @@
             phone: "0789491209",
             whatsapp: "https://wa.me/94789491209",
             tiktok: "https://www.tiktok.com/@theoudandco.lk?_r=1&_t=ZS-9BHdhExVnnd",
-            instagram: "https://www.instagram.com/the.oud.and.co?srtk=MTRjbnE2eGd2ZGsyYg=="
+            instagram: "" // Empty by default — Instagram icon hides until admin sets a link
         };
         const fallbackServices = [
             { id: "s1", title: "Custom Websites", desc: "Beautiful, tailor-made websites built from scratch to match your brand.", features: ["Unique designs (no templates)", "Works on all devices", "Easy to update yourself"], icon: "fa-solid fa-laptop-code", color: "text-purpleGlow" },
@@ -1507,12 +1511,22 @@
             document.getElementById('contactWhatsAppBtn').href = wa + "?text=Hello%20Webora!%20I'm%20interested%20in%20a%20new%20website.";
             document.getElementById('footerWhatsAppLink').href = wa;
 
-            // Social links — always use fallback if not overridden in Firebase
+            // TikTok — always visible
             const tiktokEl = document.getElementById('footerTikTokLink');
             if (tiktokEl) tiktokEl.href = s.tiktok || fallbackSettings.tiktok;
 
+            // Instagram — SHOW only if a valid URL is set
             const instaEl = document.getElementById('footerInstagramLink');
-            if (instaEl) instaEl.href = s.instagram || fallbackSettings.instagram;
+            if (instaEl) {
+                const instaUrl = (s.instagram || '').trim();
+                if (instaUrl && instaUrl.length > 5 && instaUrl.startsWith('http')) {
+                    instaEl.href = instaUrl;
+                    instaEl.style.display = 'flex';
+                } else {
+                    instaEl.href = '#';
+                    instaEl.style.display = 'none';
+                }
+            }
         }
 
         function renderServices(services) {
